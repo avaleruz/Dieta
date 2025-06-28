@@ -60,52 +60,108 @@
 <body>
   <h1>📅 Dieta Settimanale</h1>
 
-  <!-- Contenuto della dieta (Sabato - Venerdì + Anacardi) già incluso in versione precedente -->
+  <h2>Sabato</h2>
+  <ul>
+    <li><input type="checkbox"><input type="text" value="13:00 - Petto di pollo 160g, Patate 250g, Verdure cotte 200g, Pane integrale 20g, Olio EVO 5g"></li>
+    <li><input type="checkbox"><input type="text" value="16:30 - Whey 30g, ½ banana"></li>
+    <li><input type="checkbox"><input type="text" value="19:15 - 2 uova, 2 scatolette di tonno, Pane integrale 40g, Carote bollite 200g, Olio EVO 5g"></li>
+    <li><input type="checkbox"><input type="text" value="20:00 - Skyr 200g o whey shake (facoltativo)"></li>
+  </ul>
+
+  <h2>Domenica</h2>
+  <ul>
+    <li><input type="checkbox"><input type="text" value="13:00 - 1 uovo + 150g albume, Pane integrale 30g, Zucchine, Olio EVO 5g"></li>
+    <li><input type="checkbox"><input type="text" value="16:30 - Skyr 200g, Frutta 150g"></li>
+    <li><input type="checkbox"><input type="text" value="19:15 - Merluzzo 200g, Patate 200g, Carote, Pane integrale 30g, Olio EVO 5g"></li>
+  </ul>
+
+  <h2>Lunedì</h2>
+  <ul>
+    <li><input type="checkbox"><input type="text" value="13:00 - Petto di pollo 160g, Riso basmati 80g, Verdure, Olio EVO 5g"></li>
+    <li><input type="checkbox"><input type="text" value="16:30 - Whey 30g, ½ banana"></li>
+    <li><input type="checkbox"><input type="text" value="19:15 - 2 uova, 2 scatole di tonno, Pane integrale 40g, Carote, Olio EVO 5g"></li>
+  </ul>
+
+  <h2>Martedì</h2>
+  <ul>
+    <li><input type="checkbox"><input type="text" value="13:00 - 1 uovo + 150g albume, 1 scatola di tonno, Pane integrale 30g, Verdure + Olio EVO 5g"></li>
+    <li><input type="checkbox"><input type="text" value="16:30 - Yogurt greco 170g, Frutta 100g"></li>
+    <li><input type="checkbox"><input type="text" value="19:00 - Salmone 150g, Patate 150g, Verdure, Olio EVO 5g"></li>
+  </ul>
+
+  <h2>Mercoledì</h2>
+  <ul>
+    <li><input type="checkbox"><input type="text" value="13:00 - Petto di pollo 160g, Riso basmati 80g, Verdure, Olio EVO 5g"></li>
+    <li><input type="checkbox"><input type="text" value="16:30 - Whey 30g, ½ banana"></li>
+    <li><input type="checkbox"><input type="text" value="19:15 - 2 uova, 2 scatole di tonno, Pane integrale 40g, Carote, Olio EVO 5g"></li>
+  </ul>
+
+  <h2>Giovedì</h2>
+  <ul>
+    <li><input type="checkbox"><input type="text" value="13:00 - 1 uovo + 150g albume, 1 scatola di tonno, Pane integrale 30g, Verdure + Olio EVO 5g"></li>
+    <li><input type="checkbox"><input type="text" value="16:30 - Skyr 200g, Frutta 150g"></li>
+    <li><input type="checkbox"><input type="text" value="19:00 - Orata 150g, Pane integrale 30g, Verdure, Olio EVO 5g"></li>
+  </ul>
+
+  <h2>Venerdì</h2>
+  <ul>
+    <li><input type="checkbox"><input type="text" value="13:00 - Petto di pollo 160g, Riso basmati 80g, Verdure, Olio EVO 5g"></li>
+    <li><input type="checkbox"><input type="text" value="16:30 - Whey 30g, ½ banana"></li>
+    <li><input type="checkbox"><input type="text" value="19:15 - 2 uova, 2 scatole di tonno, Pane integrale 40g, Carote, Olio EVO 5g"></li>
+  </ul>
+
+  <h2>Bonus - Anacardi</h2>
+  <ul>
+    <li><input type="checkbox"><input type="text" value="15g anacardi = 10g mandorle / 1/2 banana / 20g pane / 5g olio EVO (in sostituzione)"></li>
+  </ul>
 
   <p style="text-align:center; margin-top: 30px;">⚠️ <strong>Nota:</strong> su iPhone le modifiche spuntate e testuali <u>non si possono salvare</u> in un file, ma <u>rimarranno visibili se riapri la pagina dallo stesso browser</u> (grazie alla cache locale).</p>
 
-  <p style="text-align:center; margin-top: 20px;">
-    <a href="https://api.whatsapp.com/send?text=Qui%20puoi%20trovare%20la%20mia%20dieta%20settimanale!" target="_blank" style="text-decoration:none;">
-      <button>📤 Invia via WhatsApp</button>
-    </a>
-  </p>
+  
+<p style="text-align:center; margin-top: 20px;">
+  <a href="https://api.whatsapp.com/send?text=Qui%20puoi%20trovare%20la%20mia%20dieta%20settimanale!" target="_blank" style="text-decoration:none;">
+    <button>📤 Invia via WhatsApp</button>
+  </a>
+</p>
 
-  <button onclick="downloadData()">💾 Salva dieta modificata</button>
+<button onclick="downloadData()">💾 Salva dieta modificata</button>
 
-  <script>
-    window.addEventListener('load', () => {
-      document.querySelectorAll('input[type="text"]').forEach((input, index) => {
-        const saved = localStorage.getItem('text_' + index);
-        if (saved) input.value = saved;
-        input.addEventListener('input', () => {
-          localStorage.setItem('text_' + index, input.value);
-        });
-      });
-
-      document.querySelectorAll('input[type="checkbox"]').forEach((box, index) => {
-        const saved = localStorage.getItem('check_' + index);
-        if (saved === 'true') box.checked = true;
-        box.addEventListener('change', () => {
-          localStorage.setItem('check_' + index, box.checked);
-        });
+<script>
+  window.addEventListener('load', () => {
+    document.querySelectorAll('input[type="text"]').forEach((input, index) => {
+      const saved = localStorage.getItem('text_' + index);
+      if (saved) input.value = saved;
+      input.addEventListener('input', () => {
+        localStorage.setItem('text_' + index, input.value);
       });
     });
 
-    function downloadData() {
-      let output = 'Dieta settimanale modificata:\n\n';
-      document.querySelectorAll('input[type="text"]').forEach((el, idx) => {
-        const checked = document.querySelectorAll('input[type="checkbox"]')[idx]?.checked ? '[x]' : '[ ]';
-        output += `${checked} ${el.value}\n`;
+    document.querySelectorAll('input[type="checkbox"]').forEach((box, index) => {
+      const saved = localStorage.getItem('check_' + index);
+      if (saved === 'true') box.checked = true;
+      box.addEventListener('change', () => {
+        localStorage.setItem('check_' + index, box.checked);
       });
-      const blob = new Blob([output], { type: 'text/plain' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = 'dieta_modificata.txt';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(link.href);
-    }
-  </script>
+    });
+  });
+function downloadData() {
+  let output = 'Dieta settimanale modificata:
+
+';
+  document.querySelectorAll('input[type="text"]').forEach((el, idx) => {
+    const checked = document.querySelectorAll('input[type="checkbox"]')[idx]?.checked ? '[x]' : '[ ]';
+    output += `${checked} ${el.value}
+`;
+  });
+  const blob = new Blob([output], { type: 'text/plain' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'dieta_modificata.txt';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(link.href);
+}
+</script>
 </body>
 </html>
