@@ -124,7 +124,7 @@
   </a>
 </p>
 
-<button onclick="downloadData()">💾 Esporta dieta in TXT</button>
+<button onclick="openPopup()">📋 Copia dieta in popup</button>
 <script>
   window.addEventListener('load', () => {
     document.querySelectorAll('input[type="text"]').forEach((input, index) => {
@@ -144,15 +144,7 @@
     });
   });
 
-  function downloadData() {
-  let output = 'Dieta settimanale modificata:
-
-';
-  const texts = document.querySelectorAll('input[type="text"]');
-  const checks = document.querySelectorAll('input[type="checkbox"]');
-  texts.forEach((el, idx) => {
-    const checked = checks[idx]?.checked ? '[x]' : '[ ]';
-    output += `${checked} ${el.value}
+  ${el.value}
 `;
   });
   const blob = new Blob([output], { type: 'text/plain' });
@@ -175,6 +167,22 @@
     document.body.removeChild(link);
     URL.revokeObjectURL(link.href);
   }
+  function openPopup() {
+    let output = 'Dieta settimanale modificata:
+
+';
+    const texts = document.querySelectorAll('input[type="text"]');
+    const checks = document.querySelectorAll('input[type="checkbox"]');
+    texts.forEach((el, idx) => {
+      const checked = checks[idx]?.checked ? '[x]' : '[ ]';
+      output += `${checked} ${el.value}
+`;
+    });
+
+    const popup = window.open('', 'popup', 'width=600,height=500');
+    popup.document.write('<html><head><title>Copia dieta</title></head><body style="font-family:Arial;padding:10px;"><h2>Dieta modificata</h2><textarea style="width:100%;height:80%;">' + output + '</textarea></body></html>');
+  }
 </script>
 </body>
 </html>
+
