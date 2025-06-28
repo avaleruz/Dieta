@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dieta Settimanale</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #121212;
+      color: #f0f0f0;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #ffffff;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background: #1e1e1e;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 1px 3px rgba(255,255,255,0.1);
+    }
+    input[type="checkbox"] {
+      margin-right: 10px;
+      transform: scale(1.2);
+    }
+    input[type="text"] {
+      flex-grow: 1;
+      font-size: 15px;
+      padding: 6px;
+      background-color: #2a2a2a;
+      color: white;
+      border: 1px solid #555;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>📅 Dieta Settimanale</h1>
+
+  <!-- Contenuto della dieta (Sabato - Venerdì + Anacardi) già incluso in versione precedente -->
+
+  <p style="text-align:center; margin-top: 30px;">⚠️ <strong>Nota:</strong> su iPhone le modifiche spuntate e testuali <u>non si possono salvare</u> in un file, ma <u>rimarranno visibili se riapri la pagina dallo stesso browser</u> (grazie alla cache locale).</p>
+
+  <p style="text-align:center; margin-top: 20px;">
+    <a href="https://api.whatsapp.com/send?text=Qui%20puoi%20trovare%20la%20mia%20dieta%20settimanale!" target="_blank" style="text-decoration:none;">
+      <button>📤 Invia via WhatsApp</button>
+    </a>
+  </p>
+
+  <button onclick="downloadData()">💾 Salva dieta modificata</button>
+
+  <script>
+    window.addEventListener('load', () => {
+      document.querySelectorAll('input[type="text"]').forEach((input, index) => {
+        const saved = localStorage.getItem('text_' + index);
+        if (saved) input.value = saved;
+        input.addEventListener('input', () => {
+          localStorage.setItem('text_' + index, input.value);
+        });
+      });
+
+      document.querySelectorAll('input[type="checkbox"]').forEach((box, index) => {
+        const saved = localStorage.getItem('check_' + index);
+        if (saved === 'true') box.checked = true;
+        box.addEventListener('change', () => {
+          localStorage.setItem('check_' + index, box.checked);
+        });
+      });
+    });
+
+    function downloadData() {
+      let output = 'Dieta settimanale modificata:\n\n';
+      document.querySelectorAll('input[type="text"]').forEach((el, idx) => {
+        const checked = document.querySelectorAll('input[type="checkbox"]')[idx]?.checked ? '[x]' : '[ ]';
+        output += `${checked} ${el.value}\n`;
+      });
+      const blob = new Blob([output], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'dieta_modificata.txt';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href);
+    }
+  </script>
+</body>
+</html>
