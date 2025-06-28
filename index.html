@@ -124,6 +124,7 @@
   </a>
 </p>
 
+<button onclick="downloadData()">💾 Esporta dieta in TXT</button>
 <script>
   window.addEventListener('load', () => {
     document.querySelectorAll('input[type="text"]').forEach((input, index) => {
@@ -142,29 +143,27 @@
       });
     });
   });
-${el.value}
+
+  function downloadData() {
+    let output = 'Dieta settimanale modificata:
+
+';
+    const texts = document.querySelectorAll('input[type="text"]');
+    const checks = document.querySelectorAll('input[type="checkbox"]');
+    texts.forEach((el, idx) => {
+      const checked = checks[idx]?.checked ? '[x]' : '[ ]';
+      output += `${checked} ${el.value}
 `;
-  });
-  const blob = new Blob([output], { type: 'text/plain' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = 'dieta_modificata.txt';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(link.href);
-} ${el.value}
-`;
-  });
-  const blob = new Blob([output], { type: 'text/plain' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = 'dieta_modificata.txt';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(link.href);
-}
+    });
+    const blob = new Blob([output], { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'dieta_modificata.txt';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+  }
 </script>
 </body>
 </html>
