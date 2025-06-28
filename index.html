@@ -124,8 +124,6 @@
   </a>
 </p>
 
-<button onclick="downloadData()">💾 Salva dieta modificata</button>
-
 <script>
   window.addEventListener('load', () => {
     document.querySelectorAll('input[type="text"]').forEach((input, index) => {
@@ -144,15 +142,7 @@
       });
     });
   });
-function downloadData() {
-  let output = 'Dieta settimanale modificata:
-
-';
-  const texts = document.querySelectorAll('input[type="text"]');
-  const checks = document.querySelectorAll('input[type="checkbox"]');
-  texts.forEach((el, idx) => {
-    const checked = checks[idx]?.checked ? '[x]' : '[ ]';
-    output += `${checked} ${el.value}
+${el.value}
 `;
   });
   const blob = new Blob([output], { type: 'text/plain' });
